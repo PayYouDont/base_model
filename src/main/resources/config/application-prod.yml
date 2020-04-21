@@ -1,0 +1,19 @@
+spring:
+  #数据库
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/base_model?characterEncoding=utf8&useUnicode=true&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+
+  jpa:
+    properties:
+    hibernate:
+      ddl-auto: none
+    #是否打印sql语句
+    show-sql: false
+
+  output:
+    ansi:
+      #彩色日志
+      enabled: never

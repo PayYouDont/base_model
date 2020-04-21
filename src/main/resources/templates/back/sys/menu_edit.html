@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <title>网站后台管理模版</title>
+    <link rel="stylesheet" type="text/css" href="/layuiadmin/layui/css/layui.css"/>
+    <link rel="stylesheet" type="text/css" href="/layuiadmin/style/eleTree.css"/>
+    <style type="text/css">
+        #pidTree{
+            width: 100%;
+            position: absolute;
+            top: 100%;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            z-index: 100;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap-container">
+    <form class="layui-form" style="width: 90%;padding-top: 20px;">
+        <input type="hidden" th:value="${entity.id}" name="id" id="id">
+        <div class="layui-form-item">
+            <label class="layui-form-label">上级：</label>
+            <div class="layui-input-block">
+                <input type="text" name="pidLabel" required lay-verify="required" placeholder="请选择" readonly=""
+                       autocomplete="off" class="layui-input" th:value="${parentEntity.title}">
+                <input type="hidden" name="pid" id="pid" th:value="${entity.pid}">
+                <div class="eleTree" lay-filter="menuTree" id="pidTree"></div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">名称：</label>
+            <div class="layui-input-block">
+                <input type="text" name="title" required lay-verify="required" placeholder="请输入名称" autocomplete="off"
+                       class="layui-input" th:value="${entity.title}">
+            </div>
+
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">权限：</label>
+            <div class="layui-input-block">
+                <input type="text" name="permissions" required lay-verify="required" placeholder="权限" autocomplete="off"
+                       class="layui-input" th:value="${entity.permissions}">
+            </div>
+
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">序号：</label>
+            <div class="layui-input-block">
+                <input type="text" name="number" required lay-verify="required" placeholder="序号" autocomplete="off"
+                       class="layui-input" th:value="${entity.number}">
+            </div>
+
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">菜单url：</label>
+            <div class="layui-input-block">
+                <input type="text" name="url" placeholder="url" autocomplete="off"
+                       class="layui-input"  th:value="${entity.url}">
+            </div>
+
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">图标：</label>
+            <div class="layui-input-block">
+                <input type="text" name="icon" placeholder="默认图标" autocomplete="off"
+                       class="layui-input"  th:value="${entity.icon}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">状态：</label>
+            <div class="layui-input-block">
+                <input type="radio" name="status" value="0" title="显示" th:checked="${entity.status==0}">
+                <input type="radio" name="status" value="1" title="隐藏" th:checked="${entity.status==1}">
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">描述</label>
+            <div class="layui-input-block">
+                <textarea name="content" placeholder="请输入内容" class="layui-textarea"
+                          th:text="${entity.content}"></textarea>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn layui-btn-normal" lay-submit lay-filter="save">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="/layuiadmin/layui/layui.js"></script>
+<script src="/js/core/common_tab.js"></script>
+<script src="/js/sys/menu_edit.js"></script>
+<script>
+    var url = '/menu/';
+</script>
+</body>
+</html>
